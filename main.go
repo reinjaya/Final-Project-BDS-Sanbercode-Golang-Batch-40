@@ -9,7 +9,6 @@ import (
 	"rein/final/database"
 	"rein/final/repository"
 	"rein/final/structs"
-	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -42,15 +41,15 @@ func main() {
 		fmt.Println("loaded config")
 	}
 	//psqlInfo := fmt.Sprintf("host=#{os.Getenv("DB_HOST")} port=#{os.Getenv("DB_PORT")} dbname=#{os.Getenv("DB_NAME")} user=#{os.Getenv("DB_USER")} password=#{os.Getenv("DB_PASSWORD")} sslmode=disable")
-	port, _ := strconv.Atoi(os.Getenv("DB_PORT"))
-	psqlInfo := fmt.Sprintf("host=%s port=%d dbname=%s user=%s password=%s sslmode=disable", os.Getenv("DB_HOST"), port, os.Getenv("DB_NAME"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"))
+	// port, _ := strconv.Atoi(os.Getenv("DB_PORT"))
+	// psqlInfo := fmt.Sprintf("host=%s port=%d dbname=%s user=%s password=%s sslmode=disable", os.Getenv("DB_HOST"), port, os.Getenv("DB_NAME"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"))
 
-	// psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-	// 	os.Getenv("PGHOST"),
-	// 	os.Getenv("PGPORT"),
-	// 	os.Getenv("PGUSER"),
-	// 	os.Getenv("PGPASSWORD"),
-	// 	os.Getenv("PGDATABASE"))
+	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+		os.Getenv("PGHOST"),
+		os.Getenv("PGPORT"),
+		os.Getenv("PGUSER"),
+		os.Getenv("PGPASSWORD"),
+		os.Getenv("PGDATABASE"))
 
 	DB, err = sql.Open("postgres", psqlInfo)
 	err = DB.Ping()
